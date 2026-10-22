@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "grav-anomaly-explorer: reproducible static gravity anomalies with quantified uncertainty"
+version: 0.1.0
+date-released: 2026-10-22
+license: BSD-3-Clause
+repository-code: "https://github.com/alberttkd/static-gravity-anomalies-colombia"
+authors:
+  - family-names: Herrera
+    given-names: Albert Johan
+    affiliation: "Universidad del Quindío, Ingeniería Topográfica y Geomática"
+    orcid: "https://orcid.org/0009-0009-1490-9075"
+    email: alberthj.herreras@uqvirtual.edu.co
+keywords: [gravity, Bouguer anomaly, geodesy, kriging, equivalent sources, Colombia]
+references:
+  - type: article
+    authors:
+      - family-names: Hinze
+        given-names: William J.
+    title: "New standards for reducing gravity data: The North American gravity database"
+    journal: Geophysics
+    year: 2005
+    volume: 70
+    issue: 4
+    doi: 10.1190/1.1988183
+  - type: software
+    title: Harmonica
+    doi: 10.5281/zenodo.3628741
+  - type: software
+    title: Verde
+    doi: 10.21105/joss.00957
+  - type: software
+    title: Boule
+    doi: 10.5281/zenodo.3530749

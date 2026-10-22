@@ -1,0 +1,119 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gravanom"
+version = "0.1.0"
+description = "Reproducible reduction, quality control and gridding of static gravity anomalies (FAA, SBA, CBA) with quantified uncertainty."
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "Albert Johan Herrera" }]
+requires-python = ">=3.12,<3.14"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+  "numpy==2.5.4",
+  "pandas==3.0.6",
+  "scipy==1.18.1",
+  "xarray==2026.9.0",
+  "pyproj==3.8.0",
+  "shapely==2.2.0",
+  "geopandas==1.2.0",
+  "pyarrow==26.0.0",
+  "rasterio==1.5.2",
+  "rioxarray==0.23.0",
+  "boule==0.6.0",
+  "harmonica==0.7.0",
+  "verde==1.9.0",
+  "gstools==1.7.0",
+  "pydantic==2.14.1",
+  "pyyaml==6.0.3",
+  "typer==0.27.3",
+  "openpyxl==3.1.5",
+  "xlrd==2.0.2",
+  "matplotlib==3.11.2",
+  "pillow==13.0.0",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi==0.159.1",
+  "uvicorn==0.54.0",
+  "pydantic-settings==2.16.1",
+]
+
+[dependency-groups]
+docs = [
+  "mkdocs==1.6.1",
+  "mkdocs-material==9.7.7",
+  "mkdocstrings-python==2.0.10",
+]
+dev = [
+  "pytest==9.1.1",
+  "pytest-cov==7.1.0",
+  "hypothesis==6.170.5",
+  "httpx==0.28.1",
+  "ruff==0.17.1",
+  "mypy==2.4.0",
+  "pandas-stubs==3.0.5.260914",
+  "types-PyYAML==6.0.12.20260906",
+]
+
+[project.scripts]
+gravanom = "gravanom.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gravanom"]
+
+[tool.ruff]
+line-length = 125
+target-version = "py312"
+extend-exclude = ["frontend", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003", "RUF005", "B008"]  # unicode in science docstrings; frozen-dataclass defaults are safe
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["RUF059"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src/gravanom"]
+strict = true
+warn_unused_ignores = false
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = [
+  "boule.*", "harmonica.*", "verde.*", "gstools.*", "rasterio.*", "rioxarray.*",
+  "geopandas.*", "shapely.*", "scipy.*", "xlrd.*", "openpyxl.*", "pyproj.*", "matplotlib.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "backend/tests"]
+pythonpath = [".", "backend"]
+addopts = "-ra --strict-markers -m 'not private'"
+markers = [
+  "private: needs GRAVANOM_PRIVATE_DATA_DIR (real legacy data); local only",
+  "science: scientific validation tests (slower)",
+  "slow: long-running tests",
+]
+filterwarnings = [
+  "ignore::SyntaxWarning",
+  "ignore::DeprecationWarning:xrft.*",
+]
+
+[tool.coverage.run]
+source = ["src/gravanom"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

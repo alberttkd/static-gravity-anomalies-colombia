@@ -1,0 +1,19 @@
+# Template: copy to config/private_sources.yaml (gitignored) and fill in the real locations.
+# Paths are relative to GRAVANOM_PRIVATE_DATA_DIR. Columns are 0-based; rows are Excel rows.
+# The column layout below is the one documented in MASTER_GUIDE App. B.1.
+sources:
+  - label: A
+    path: path/to/subset_a.xlsx
+    sheet: SHEET_NAME
+    first_row: 2
+    last_row: 975
+    facts: {source_id: 0, lon: 1, lat: 2, height_m: 3, g_obs_mgal: 4, bb_supplied_mgal: 5, tc_mgal: 6}
+    legacy: {aaa: 13, abs: 14, abt: 15}
+  - label: B
+    path: path/to/subset_b.xlsx
+    duplicate_xls: path/to/subset_b.xls   # optional copy that must hold identical values
+    sheet: SHEET_NAME
+    first_row: 2
+    last_row: 1066
+    facts: {source_id: 0, lon: 1, lat: 2, height_m: 3, g_obs_mgal: 4, bb_supplied_mgal: 5, tc_mgal: 6}
+    legacy: {aaa: 12, abs: 13, abt: 14}

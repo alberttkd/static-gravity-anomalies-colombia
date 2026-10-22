@@ -1,0 +1,17 @@
+# Gridding defaults (MASTER_GUIDE §5.7, DEC-10..13).
+gridding:
+  target: CBA
+  method: auto
+  cell_size_m: 500
+  trend_degree: auto
+  matern_nu: auto
+  max_lag_m: 30000
+  bin_m: 1500
+  mask:
+    max_distance_m: 5000
+    use_convex_hull: true
+    max_sigma_mgal: 5.0
+  cv:
+    block_size_m: 15000
+    n_splits: 5
+    random_state: 20261022

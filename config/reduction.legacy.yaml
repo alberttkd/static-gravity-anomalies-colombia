@@ -1,0 +1,5 @@
+# Legacy mode: reproduces the legacy spreadsheets exactly (MASTER_GUIDE App. B):
+# rho = 2300 kg/m3, supplied BB added to ABS/ABT, legacy free-air coefficients.
+# The same formulas apply to subsets A and B; only their supplied BB values differ (F-05).
+reduction:
+  legacy_mode: true

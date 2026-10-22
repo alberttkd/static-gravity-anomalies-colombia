@@ -1,0 +1,11 @@
+# Standard reduction (MASTER_GUIDE §5.7): Hinze et al. (2005) conventions.
+reduction:
+  normal_gravity: GRS80_closed_form
+  height_correction: hinze2005_second_order
+  honkasalo: true
+  atmospheric: true
+  density_kg_m3: 2670
+  curvature: lafehr1991_closed_form
+  terrain_source: supplied
+  terrain_reference_density_kg_m3: 2670
+  legacy_mode: false

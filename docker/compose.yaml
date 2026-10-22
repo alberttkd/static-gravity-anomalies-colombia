@@ -1,0 +1,19 @@
+# docker compose -f docker/compose.yaml up --build
+# Set PRIVATE_DATA_HOST_DIR to the folder holding the legacy workbooks (optional).
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      GRAVANOM_PRIVATE_DATA_DIR: ${PRIVATE_DATA_HOST_DIR:+/data/private}
+      GRAVANOM_ARTIFACTS_DIR: /srv/artifacts
+      GRAVANOM_PUBLIC_MODE: ${GRAVANOM_PUBLIC_MODE:-false}
+      API_CORS_ORIGINS: http://localhost:8000
+    volumes:
+      - ${PRIVATE_DATA_HOST_DIR:-./empty}:/data/private:ro
+      - artifacts:/srv/artifacts
+volumes:
+  artifacts:

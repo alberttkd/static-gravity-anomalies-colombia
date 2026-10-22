@@ -1,0 +1,59 @@
+site_name: grav-anomaly-explorer
+site_description: Reproducible static gravity anomalies with quantified uncertainty
+theme:
+  name: material
+  features: [navigation.sections, content.code.copy]
+markdown_extensions:
+  - tables
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: numpy
+            show_source: false
+nav:
+  - Home: index.md
+  - User guide: user_guide.md
+  - Science:
+      - Reference field: science/reference_field.md
+      - Reductions: science/reductions.md
+      - Uncertainty: science/uncertainty.md
+      - Density: science/density.md
+      - Gridding: science/gridding.md
+      - Validation: science/validation.md
+      - Results (synthetic): science/results_synthetic.md
+  - API: api.md
+  - Python reference: reference.md
+  - Environment: audit/ENVIRONMENT_REPORT.md
+  - Decisions (ADR):
+      - adr/0001-scope-static-anomalies.md
+      - adr/0002-integrate-legacy-subsets.md
+      - adr/0003-normal-gravity-grs80.md
+      - adr/0004-honkasalo.md
+      - adr/0005-atmospheric.md
+      - adr/0006-curvature-lafehr.md
+      - adr/0007-density.md
+      - adr/0008-terrain-correction.md
+      - adr/0009-crs.md
+      - adr/0010-gridding.md
+      - adr/0011-validation.md
+      - adr/0012-cell-size.md
+      - adr/0013-masks.md
+      - adr/0014-software-stack.md
+
+# Private material kept on disk but never published
+exclude_docs: |
+  MASTER_GUIDE.md
+  audit/*
+  !audit/ENVIRONMENT_REPORT.md

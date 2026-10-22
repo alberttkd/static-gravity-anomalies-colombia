@@ -1,0 +1,56 @@
+# Data policy (MASTER_GUIDE §7.4-7.5): real data never enter Git.
+data/raw/
+data/interim/
+data/processed/
+artifacts/
+notebooks/private/
+*.xls
+*.xlsx
+*.rar
+!tests/fixtures/*.xlsx
+.env
+*.aux.xml
+
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+site/
+node_modules/
+dist/
+frontend/public/demo/
+frontend/test-results/
+frontend/playwright-report/
+dist-static/
+config/private_sources.yaml
+
+# LaTeX build by-products
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+
+# Cover letter of the journal submission contains private contact data
+paper/rbct/cover_letter.*
+paper/rbct/~$*
+paper/rbct/cover_letter*
+paper/rbct/_to_delete/
+.~lock.*#
+paper/rbct/firma*
+paper/rbct/*.tmp
+
+# Material derived from the private data: kept on disk, never published
+docs/MASTER_GUIDE.md
+docs/audit/DISCREPANCIES.md
+docs/audit/OPEN_QUESTIONS.md
+docs/audit/audit_report.md
+docs/audit/legacy_formulas.md
+docs/audit/legacy_hashes.md
+scripts/audit_reproduction.py
+tests/private/

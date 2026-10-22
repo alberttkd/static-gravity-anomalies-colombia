@@ -1,0 +1,7 @@
+# Study region (informative; aggregate values only).
+region:
+  name: Northern Colombia
+  crs_storage: EPSG:4326
+  crs_analysis: EPSG:9377
+  crs_web: EPSG:3857
+  bbox_lonlat: [-75.8, 8.2, -74.2, 9.8]

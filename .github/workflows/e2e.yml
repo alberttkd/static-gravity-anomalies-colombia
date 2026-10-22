@@ -1,0 +1,16 @@
+name: e2e
+on:
+  push: {branches: [main]}
+  workflow_dispatch:
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with: {node-version-file: .nvmrc}
+      - run: uv sync --all-extras
+      - run: uv run gravanom export-static-demo --out frontend/public/demo
+      - run: cd frontend && npm ci && npx playwright install --with-deps chromium
+      - run: cd frontend && npm run build && npm run build:static && npx playwright test
